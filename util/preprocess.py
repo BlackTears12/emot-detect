@@ -5,6 +5,8 @@ import os
 src = r'dataset/CREMA-D/VideoFlash'
 dst = r'dataset/CREMA-D/Extracted'
 
+desired_frame_dim = 224
+
 
 def delete_files_in_directory(directory_path):
     try:
@@ -18,8 +20,7 @@ def delete_files_in_directory(directory_path):
 
 
 ffmpeg_downscale_args = "scale=360:270"
-ffmpeg_pad_to_square_args = "crop':height='240':x='120':y='120':color=black"
-ffmpeg_crop_to_square_args = "crop=224:224:(iw-224)/2:(ih-224)/2"
+ffmpeg_crop_to_square_args = "crop={desired_frame_dim}:{desired_frame_dim}:(iw-{desired_frame_dim})/2:(ih-{desired_frame_dim})/2"
 
 ffmpeg_args = ffmpeg_downscale_args+","+ffmpeg_crop_to_square_args
 
